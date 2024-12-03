@@ -40,30 +40,7 @@ function playerTwoChoice() {
   return prompt("Player 2, choose rock, paper, or scissor:").toLowerCase();
 }
 
-async function fetchKestraChoice() {
-  try {
-    const response = await fetch("http://localhost:8080/api/v1/executions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer 7PAz7D1px2occ21hUziM4n",
-      },
-      body: JSON.stringify({
-        namespace: "game",
-        flowId: "rock-paper-scissor",
-        inputs: {},
-      }),
-    });
 
-    const data = await response.json();
-    return data.outputs.computerChoice;
-  } catch (error) {
-    console.error("Error fetching Kestra choice:", error);
-    return "rock";
-  }
-}
-
-// Play a single round
 function playRound(playerChoice, opponentChoice) {
   if (playerChoice === opponentChoice) {
     return "It's a tie!";
